@@ -4,6 +4,8 @@ All notable curriculum-documentation changes in this repo should be recorded her
 
 ## Unreleased
 
+## [0.0.7] - Organizing Team Pictures
+
 ### Added
 
 - Added volunteer profile photos to the Organizing Team section in [docs/index.html](docs/index.html): 23 circular avatars (56 px) for 23 team members, sourced from `/Users/zeraphim/Desktop/Volunteer Pics` and served from `docs/assets/volunteers/`. Photos appear next to each name in their respective team-group cards with a hover accent effect matching the gold design tokens.
