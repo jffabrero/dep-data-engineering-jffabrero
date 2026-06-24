@@ -1,108 +1,136 @@
-# Week 1 — Problem Framing & Project Selection
+# Philippine Wholesale Electricity Market Analytics
 
-**Phase 1 — Foundations &nbsp;|&nbsp; Milestone 0**
+## Overview
+This project analyzes electricity market data in the Philippines to understand how electricity prices behave over time. Using publicly available datasets from the Independent Electricity Market Operator of the Philippines (IEMOP), the study examines the relationship between generation levels, regional market conditions, and electricity prices in the Wholesale Electricity Spot Market (WESM).
 
----
+The project aims to answer the following research question:
 
-## This Week's Focus
-
-Define the project you will build over the next 24 weeks. The output is a problem statement — not code.
-
-**Topics:**
-
-- Answerable problem statements
-- Descriptive vs predictive vs prescriptive analytics
-- CRISP-DM simplified
-- Audience, KPI, decision to support
-- Scoping a problem for 24 weeks
-- What a useful chart/dashboard looks like
+***How do generation levels and regional market conditions relate to electricity prices in the Philippine Wholesale Electricity Spot Market (WESM)?***
 
 ---
 
-## Resources
+## Data Sources
+This project utilizes publicly available Philippine WESM datasets published by the IEMOP.
 
-**Primary:** [IBM Data Engineering Basics for Everyone](https://edx.org/learn/data-engineering) — use intro modules only
+The primary datasets include:
 
-**Optional:** [Fundamentals of Data Engineering](https://redpanda.com/guides/fundamentals-of-data-engineering) — skim the intro
+### 1. RTD Market Clearing Price
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Resource Name
+- Commodity Type
+- Marginal Price
+
+**Purpose:**
+- Analyze market clearing prices across regions, resources, and commodity types.
+- Identify periods of price volatility and extreme market conditions.
 
 ---
 
-## Task
+### 2. RTD Prices and Schedules
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Resource Name
+- Resource Type
+- Scheduled Generation (MW)
+- Locational Marginal Price (LMP)
+- Loss Factor
+- Congestion Component
 
-Write the project README draft:
-
-- What is your problem statement?
-- Who cares about this (audience)?
-- What is the key metric or KPI?
-- What is the likely data source?
-- What might the final dashboard look like?
+**Purpose:**
+- Examine the relationship between scheduled generation and electricity prices.
+- Assess the impact of transmission losses and congestion on market prices.
 
 ---
 
-## Deliverable
+### 3. RTD Regional Summaries
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Market Requirement (MW)
+- Load Bid (MW)
+- Generation (MW)
+- Market Imports (MW)
+- Market Exports (MW)
+- Losses (MW)
 
-README with a problem statement in your own words.
+**Purpose:**
+- Evaluate regional supply and demand conditions.
+- Analyze energy flows, imports, exports, and system losses.
 
-**Milestone 0 — Problem Statement** — submit by end of this week.
+---
 
-> ⚡ **Gate:** If you cannot pass M0, you must not proceed. Moderator review required.
+### 4. Registered Capacity – Generation
+**Key fields:**
+- Trading Day
+- Trading Period
+- Resource Name
+- Maximum Capacity (MW)
 
-**Estimated time:** 4–5 hours
+**Purpose:**
+- Measure available generation capacity.
+- Compare installed capacity against scheduled generation and market conditions.
 
-## Learner Support
+---
 
-### Starter Script / Template
+**Dataset Source:**
 
-Use this README starter and replace every placeholder with your own project details:
+All datasets are sourced from the IEMOP WESM Market Data Portal: https://www.iemop.ph/the-market/market-data/
 
-```md
-# <your project title>
+---
 
-## Problem Statement
-I want to answer: "<your specific question>"
+## Data Limitations
 
-## Audience
-This project is for <who will use the answer>.
+- Historical data availability depends on records published by IEMOP.
+- Market prices are influenced by external factors not directly captured in the datasets, such as fuel costs, weather conditions, regulatory interventions, and operational decisions.
+- This study focuses on Real-Time Dispatch (RTD) market data and does not represent the full scope of electricity market operations in the Philippines.
 
-## KPI or Key Metric
-The main metric I want to track is <your_kpi_name>.
+---
 
-## Likely Data Source
-I will explore <your_source_name> (<your_source_url>).
+## Objectives
 
-## Possible Final Dashboard
-The dashboard should help the audience quickly see <top insight or decision>.
-```
+The project aims to:
 
-### How To Adapt This To Your Project
+- Analyze how generation levels relate to electricity prices in WESM.
+- Examine the relationship between regional market conditions and electricity prices.
+- Track electricity prices as the primary market outcome variable.
+- Provide insights for energy analysts, researchers, and data professionals on market behavior and pricing dynamics.
 
-- Turn your topic into a question, not just a subject area.
-- Name one real audience who would care about the result.
-- Pick one KPI that helps that audience make a decision.
-- Link at least one data source that could reasonably answer the question.
+---
 
-### Sample AI Prompts
+## Expected Dashboard Outputs
 
-- "Turn this broad topic into 3 answerable problem statements: `<topic>`."
-- "Review my draft README and tell me if the audience, KPI, and data source are specific enough for Milestone 0."
-- "Suggest 5 data sources that could answer this question, then rank them by feasibility for a 24-week project."
+Potential analyses include:
 
-### Definition of Done
+### Price Trends
+- Market Clearing Price trends by region and time period.
+- Identification of peak and off-peak pricing patterns.
 
-- Your README includes a specific question in your own words.
-- Your audience and KPI are clearly named.
-- At least one possible data source is linked.
-- A moderator can tell what you plan to build by reading the README once.
+### Supply and Demand Analysis
+- Relationship between generation and regional demand.
+- Detection of supply shortages and excess generation periods.
 
-### Common Mistakes
+### Regional Market Comparison
+- Comparison of electricity prices across Luzon, Visayas, and Mindanao.
+- Regional demand and generation profiles.
 
-- Writing a broad topic like "education in the Philippines" instead of an answerable question.
-- Naming "everyone" as the audience.
-- Picking a KPI that is not actually connected to the problem statement.
-- Describing a dashboard idea before clarifying the decision it should support.
+### Generation Resource Analysis
+- Contribution of different resource types to supply.
+- Capacity utilization by region.
 
-### If You’re Stuck After 2 Hours
+### Price Drivers Exploration
+- Relationship between generation, demand conditions, and prices.
+- Identification of conditions associated with price spikes.
 
-- Try this sentence frame: "For `<audience>`, how does `<metric>` change across `<time/group>`?"
-- Shrink the scope to one place, one population, one outcome, or one time period.
-- Post your draft problem statement and source link in the community channel for feedback before moving on.
+### Market Overview
+- Summary KPIs for demand, generation, and prices.
+- Interactive filtering by date, region, and interval.
+
+
+
+
