@@ -28,18 +28,27 @@
     header {
       background: var(--navy);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    header h1 { font-size: 1.2rem; font-weight: 600; }
+    header h1 { font-size: 1.1rem; font-weight: 600; }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 1rem;
     }
 
     .stats {
@@ -246,9 +255,18 @@
 
     .loading { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.875rem; }
 
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
     @media (max-width: 700px) {
-      .stats            { grid-template-columns: repeat(2, 1fr); }
-      .milestone-grid   { grid-template-columns: repeat(4, 1fr); }
+      .stats          { grid-template-columns: repeat(2, 1fr); }
+      .milestone-grid { grid-template-columns: repeat(4, 1fr); }
+      .stat-card .number { font-size: 1.5rem; }
+      .filter-bar input, .filter-bar select { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .milestone-grid { grid-template-columns: repeat(4, 1fr); }
+      .hide-mobile    { display: none; }
     }
   </style>
 </head>
@@ -256,7 +274,7 @@
 
 <header>
   <h1>DEP — Submission Tracker</h1>
-  <div style="display:flex;align-items:center;gap:1rem;">
+  <div class="header-controls">
     <div class="toggle-wrap">
       <button class="toggle-btn active" id="btn-enrolled" onclick="setView('enrolled')">Cohort</button>
       <button class="toggle-btn"        id="btn-all"      onclick="setView('all')">All Submissions</button>
@@ -441,27 +459,27 @@ function buildTable(issues, tableKey) {
   if (!issues.length) return `<div class="empty">No submissions here.</div>`;
   const rows = applySort(applyFilters(issues), tableKey);
   if (!rows.length) return `<div class="empty">No results match your filters.</div>`;
-  return `<table>
+  return `<div class="table-wrap"><table>
     <thead><tr>
       ${thSort(tableKey,'builder','Builder')}
-      ${thSort(tableKey,'cohort','Cohort')}
+      <th class="hide-mobile">Cohort</th>
       ${thSort(tableKey,'milestone','Milestone')}
-      ${thSort(tableKey,'days','Submitted')}
+      <th class="hide-mobile">Submitted</th>
       ${thSort(tableKey,'days','Days')}
       ${thSort(tableKey,'status','Status')}
       <th>Repo</th><th>Issue</th>
     </tr></thead>
     <tbody>${rows.map(i => `<tr>
       <td>${i._builder}</td>
-      <td>${i._cohort}</td>
+      <td class="hide-mobile">${i._cohort}</td>
       <td><span class="m-badge">${i._milestone}</span></td>
-      <td>${formatDate(i.created_at)}</td>
+      <td class="hide-mobile">${formatDate(i.created_at)}</td>
       <td>${daysBadge(i._days, i._status)}</td>
       <td>${statusBadge(i._status)}</td>
       <td>${i._repoUrl !== '—' ? `<a href="${i._repoUrl}" target="_blank">repo ↗</a>` : '—'}</td>
       <td><a href="${i.html_url}" target="_blank">#${i.number}</a></td>
     </tr>`).join('')}</tbody>
-  </table>`;
+  </table></div>`;
 }
 
 function renderAll() {
