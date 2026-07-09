@@ -1,115 +1,136 @@
-# DEP Data Engineering Open Track: A 6-Month Project-Driven Build Journey
+# Philippine Wholesale Electricity Market Analytics
 
-> A 6-month, self-paced, project-driven learning journey. Participants build a real, deployable data project using free and open-source tools.
+## Overview
+This project analyzes electricity market data in the Philippines to understand how electricity prices behave over time. Using publicly available datasets from the Independent Electricity Market Operator of the Philippines (IEMOP), the study examines the relationship between generation levels, regional market conditions, and electricity prices in the Wholesale Electricity Spot Market (WESM).
 
-**Cohort:** June – November 2026 &nbsp;|&nbsp; **Time:** ~5 hrs/week &nbsp;|&nbsp; **Cost:** Free
+The project aims to answer the following research question:
 
----
-
-## What You'll Build
-
-By the end of the program, every participant will have:
-
-- A **public GitHub repo** with a clean, documented data project
-- An **end-to-end data pipeline** (ingest → clean → analyze → deploy)
-- An **analysis notebook** with charts, statistics, and written insights
-- A **live deployed dashboard** (GitHub Pages)
+***How do generation levels and regional market conditions relate to electricity prices in the Philippine Wholesale Electricity Spot Market (WESM)?***
 
 ---
 
-## Program Design
+## Data Sources
+This project utilizes publicly available Philippine WESM datasets published by the IEMOP.
 
-| | |
-|-|-|
-| **Duration** | 24 weeks (~5 hours/week, ~120 hours total) |
-| **Weekly Rule** | 1 primary resource + 1 optional max; every week produces a project artifact |
-| **Design Principles** | Project-first · milestone-driven · public accountability · low-overwhelm resource curation |
-| **Resource Rule** | Prefer official docs, interactive tools, or one proven course. Avoid multiple full courses in the same week. |
-| **Tool Stack** | Free tools only: GitHub, Python, SQL, HTML. Optional tools (Tableau, etc.) are learner-driven. |
+The primary datasets include:
 
----
+### 1. RTD Market Clearing Price
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Resource Name
+- Commodity Type
+- Marginal Price
 
-## How to Use This Repo
-
-This is the **program hub** — it contains the curriculum, weekly resources, and milestone guides.
-
-**Builders:** Follow the phase folders in order. Each week folder has resources, tasks, and links.
-
-**Volunteers:** See [docs/VOLUNTEER_GUIDE.md](docs/VOLUNTEER_GUIDE.md) for your role and responsibilities.
+**Purpose:**
+- Analyze market clearing prices across regions, resources, and commodity types.
+- Identify periods of price volatility and extreme market conditions.
 
 ---
 
-## Stuck Protocol
+### 2. RTD Prices and Schedules
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Resource Name
+- Resource Type
+- Scheduled Generation (MW)
+- Locational Marginal Price (LMP)
+- Loss Factor
+- Congestion Component
 
-> If you have spent more than **2 hours** on one problem without progress:
->
-> 1. Write down exactly what you tried
-> 2. Post in the DEP community channel with your error message and code snippet
-> 3. Tag your moderator
->
-> **Do NOT skip ahead.** Moderators flag stuck participants for Ops Lead review within 48 hours.
-> You may not advance to the next milestone while a blocker is unresolved.
-
----
-
-## Curriculum
-
-| Phase | Weeks | Focus | Output |
-|-------|-------|-------|--------|
-| [01 — Foundations](01-foundations/) | 1–4 | Problem framing, data source discovery, GitHub + Python basics | Problem statement + first raw data pull |
-| [02 — Data Collection](02-data-collection/) | 5–6 | API fundamentals, alternate ingestion paths (scraping / manual) | Ingestion script + raw data in `/data/raw` |
-| [03 — Data Processing](03-data-processing/) | 7–12 | Storage/data modeling, SQL, Pandas cleaning, data quality, pipeline structuring | Clean, schema-defined dataset + reproducible pipeline |
-| [04 — Analysis & Insights](04-analysis-and-insights/) | 13–16 | Descriptive stats, EDA, visualization, insight writing | Insights notebook with 3–5 charts |
-| [05A — Predictive Layer](05-project-packaging/) *(Path A — conditional)* | 17–20 | Regression, classification, feature engineering, ML pipeline integration | Predictive model + evaluation metrics |
-| [05B — Non-Predictive Alt Track](05-project-packaging/) *(Path B — conditional)* | 17–20 | Advanced segmentation, KPI framework, stakeholder narrative, repo integration | Advanced analysis + stakeholder brief |
-| [06 — Deployment](06-deployment/) | 21–24 | Dashboard design + build, GitHub Pages deploy, documentation polish, presentation | Live project URL + portfolio-ready repo |
+**Purpose:**
+- Examine the relationship between scheduled generation and electricity prices.
+- Assess the impact of transmission losses and congestion on market prices.
 
 ---
 
-## Milestones
+### 3. RTD Regional Summaries
+**Key fields:**
+- Run Time
+- Trading Interval
+- Region Name
+- Market Requirement (MW)
+- Load Bid (MW)
+- Generation (MW)
+- Market Imports (MW)
+- Market Exports (MW)
+- Losses (MW)
 
-Progress is tracked through 7 milestones (M0–M6). Each one has a clear output and a submission form.
-
-| Milestone | When | Output |
-|-----------|------|--------|
-| M0 — Problem Statement | End of Week 1 | Specific question + audience + possible data source + README in learner's own words |
-| M1 — Data Source Identified / Repo Initialized | By Week 3–4 | Working repo + chosen source + README data section complete |
-| M2 — Data Ingestion Script | By Week 6 | Raw data in `/data/raw` via API, scraping, or manual timestamped save |
-| M3 — Clean Dataset | By Week 12 | Processed dataset + schema plan + cleaning notes + validation checks |
-| M4 — Initial Insights | By Week 16 | 3–5 charts + written interpretations + one cautious inference section |
-| M5 — Public Repo / Predictive Component | By Week 20–23 | Professional repo + predictive layer (Path A) OR advanced EDA + stakeholder brief (Path B) |
-| M6 — Live Deployment | By Week 24 | Live GitHub Pages URL + presentable final project |
-
-> **Gates:** M0 and M1 are hard gates. Learners must not proceed to the next phase without moderator review and approval.
-
-Full checklist: [docs/MILESTONE_CHECKLIST.md](docs/MILESTONE_CHECKLIST.md)
+**Purpose:**
+- Evaluate regional supply and demand conditions.
+- Analyze energy flows, imports, exports, and system losses.
 
 ---
 
-## Getting Started (Participants)
+### 4. Registered Capacity – Generation
+**Key fields:**
+- Trading Day
+- Trading Period
+- Resource Name
+- Maximum Capacity (MW)
 
-1. **Join the community** — [Join the DEP Discord](https://discord.com/invite/buDgydz7J9)
-2. **Set up your project repo** — copy the [DEP Starter Kit](cohorts/starter-kit/) scaffold into your own GitHub repo
-3. **Start Phase 1** — go to [01-foundations/](01-foundations/) and begin Week 1
-
----
-
-## Tech Stack
-
-![DEP Tech Stack](docs/stack-diagram.svg)
-
----
-
-## Cohorts
-
-- [2026 Cohort](cohorts/2026/) — June–November 2026 *(current)*
+**Purpose:**
+- Measure available generation capacity.
+- Compare installed capacity against scheduled generation and market conditions.
 
 ---
 
-## For Volunteers
+**Dataset Source:**
 
-See [docs/VOLUNTEER_GUIDE.md](docs/VOLUNTEER_GUIDE.md) for role descriptions, responsibilities, and the operating rhythm.
+All datasets are sourced from the IEMOP WESM Market Data Portal: https://www.iemop.ph/the-market/market-data/
 
 ---
 
-*Built by Data Engineering Pilipinas. Free and open. Always.*
+## Data Limitations
+
+- Historical data availability depends on records published by IEMOP.
+- Market prices are influenced by external factors not directly captured in the datasets, such as fuel costs, weather conditions, regulatory interventions, and operational decisions.
+- This study focuses on Real-Time Dispatch (RTD) market data and does not represent the full scope of electricity market operations in the Philippines.
+
+---
+
+## Objectives
+
+The project aims to:
+
+- Analyze how generation levels relate to electricity prices in WESM.
+- Examine the relationship between regional market conditions and electricity prices.
+- Track electricity prices as the primary market outcome variable.
+- Provide insights for energy analysts, researchers, and data professionals on market behavior and pricing dynamics.
+
+---
+
+## Expected Dashboard Outputs
+
+Potential analyses include:
+
+### Price Trends
+- Market Clearing Price trends by region and time period.
+- Identification of peak and off-peak pricing patterns.
+
+### Supply and Demand Analysis
+- Relationship between generation and regional demand.
+- Detection of supply shortages and excess generation periods.
+
+### Regional Market Comparison
+- Comparison of electricity prices across Luzon, Visayas, and Mindanao.
+- Regional demand and generation profiles.
+
+### Generation Resource Analysis
+- Contribution of different resource types to supply.
+- Capacity utilization by region.
+
+### Price Drivers Exploration
+- Relationship between generation, demand conditions, and prices.
+- Identification of conditions associated with price spikes.
+
+### Market Overview
+- Summary KPIs for demand, generation, and prices.
+- Interactive filtering by date, region, and interval.
+
+
+
+
